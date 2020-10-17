@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'caderno_painter.dart';
 
-class Caderno extends StatelessWidget {
+class Caderno extends StatefulWidget {
   const Caderno({
     Key key,
     @required this.points,
@@ -16,6 +16,12 @@ class Caderno extends StatelessWidget {
   final Function(int index) onItemColorTap;
   final List<MaterialColor> colors;
 
+  @override
+  _CadernoState createState() => _CadernoState();
+}
+
+class _CadernoState extends State<Caderno> {
+  bool visible = true;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,15 +56,30 @@ class Caderno extends StatelessWidget {
                   color: Colors.black,
                   child: CustomPaint(
                     painter: CadernoPainter(
-                      points: points,
+                      points: widget.points,
                     ),
                     child: Container(),
                   ),
                 ),
               ),
-              PainelDeCores(
-                colors: colors,
-                onItemColorTap: onItemColorTap,
+              Column(
+                children: [
+                  Expanded(
+                    child: PainelDeCores(
+                      colors: widget.colors,
+                      onItemColorTap: widget.onItemColorTap,
+                      visible: visible,
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      setState(() => visible = !visible);
+                    },
+                    child: Text(
+                      visible ? 'Fechar' : 'Mostrar',
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
