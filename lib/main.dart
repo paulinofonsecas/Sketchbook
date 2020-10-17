@@ -33,8 +33,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var points = <CustomPoint>[];
-  var colors = [
+  var colors = <MaterialColor>[
     Colors.red,
+    Colors.pink,
     Colors.green,
     Colors.purple,
     Colors.amber,

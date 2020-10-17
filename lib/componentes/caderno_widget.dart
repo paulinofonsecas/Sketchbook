@@ -21,19 +21,46 @@ class Caderno extends StatelessWidget {
     return Container(
       child: Stack(
         children: [
-          CustomPaint(
-            painter: CadernoPainter(
-              points: points,
-            ),
-            child: Container(),
-          ),
           Positioned(
             top: 0,
-            right: 0,
-            child: PainelDeCores(
-              colors: colors,
-              onItemColorTap: onItemColorTap,
+            left: 0,
+            child: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  margin: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(90),
+                    color: Colors.blue,
+                  ),
+                  child: Text(
+                    'Selecionar a cor do funto',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  color: Colors.black,
+                  child: CustomPaint(
+                    painter: CadernoPainter(
+                      points: points,
+                    ),
+                    child: Container(),
+                  ),
+                ),
+              ),
+              PainelDeCores(
+                colors: colors,
+                onItemColorTap: onItemColorTap,
+              ),
+            ],
           ),
         ],
       ),

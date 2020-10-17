@@ -12,18 +12,12 @@ class CadernoPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
       ..isAntiAlias = true
-      ..strokeWidth = 3.0;
+      ..strokeWidth = 2.0;
     for (int i = 0; i < points.length - 1; i++) {
       if (points[i] != null && points[i + 1] != null) {
         canvas.drawLine(
           points[i].offset,
           points[i + 1].offset,
-          paint..color = points[i].color,
-        );
-      } else if (points[i] != null && points[i + 1] == null) {
-        canvas.drawPoints(
-          PointMode.points,
-          [points[i].offset],
           paint..color = points[i].color,
         );
       }
